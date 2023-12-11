@@ -1,8 +1,4 @@
-alptekin karabacak <alptekinkarabacak@gmail.com>
-	
-10:36 (11 dakika önce)
-	
-Alıcı: ben
+
 
 Week 1-2: Introduction to C++ Basics 
 
