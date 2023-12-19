@@ -3,12 +3,9 @@
 
 
 int main() {
-    int a = 10, b = 20;
-    int sum = a + b;
-    int difference = b - a;
-    float result = static_cast<float>(a) / b;
-
-   // float preciseResult = static_cast<float>(b) / a
-    std::cout<<"Size is: "<<result <<"\n";
+    for (int i = 0, j = 0; i < 5; i++, j--) {
+        std::cout << i << " ";
+        std::cout << j << "\n";
+    }
     return 0;
 }

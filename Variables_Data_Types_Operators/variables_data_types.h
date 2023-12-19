@@ -31,6 +31,7 @@ int sum = a + b;
 int difference = b - a;
 float result = b / a Is there a problem on this?;
 float preciseResult = static_cast<float>(b) / a; // Casting for precise division
+ * post increment and pre increment
 * btw always stay away from c type casting
  *
  * */
