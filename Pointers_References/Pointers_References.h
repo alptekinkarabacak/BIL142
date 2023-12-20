@@ -67,9 +67,10 @@ int main() {
 
     *ptr = 30; // Changing the value of x through the pointer
     ref = 40;  // Changing the value of y through the reference
-
-    cout << "x: " << x << endl; // Output: x: 30
-    cout << "y: " << y << endl; // Output: y: 40
+    int foo{100};
+    ref = foo;
+    y = 500;
+    std::cout<<ref;
 
     return 0;
 }
