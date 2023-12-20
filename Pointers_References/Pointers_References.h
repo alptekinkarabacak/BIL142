@@ -75,4 +75,40 @@ int main() {
     return 0;
 }
 
+// You can return reference from a function
+int & squareRef(int &);
+
+int main() {
+    int number1 = 8;
+    int & result = squareRef(number1);
+    std::cout << &result << "\n";   //
+    std::cout << &number1 << "\n";  //
+
+
+}
+
+int & squareRef(int & rNumber) {
+    std::cout <<  "In squareRef(): " << &rNumber << "\n";  // 0x22ff14
+    rNumber *= rNumber;
+    return rNumber;
+}
+
+// What about this one?
+int & squareRef(int &);
+
+int main() {
+    int number1 = 8;
+    int & result = squareRef(number1);
+    std::cout << &result << "\n";   //
+    std::cout << &number1 << "\n";  //
+
+
+}
+
+int & squareRef(int & rNumber) {
+    int localVar{64};
+    localVar *= rNumber;
+    return localVar;
+}
+
 #endif //BIL142_POINTERS_REFERENCES_H
