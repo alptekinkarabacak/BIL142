@@ -16,11 +16,14 @@ Explain the limitations and appropriate use cases for each type.
                std::numeric_limits<bool>::max()
  * int foo; -> Decleration
  * int foo = 5 -> initialization
+ * const int foo;
  * int for{5}; -> Another initialization technique, always prefer this one!
  * Custom Data Types:
  * struct, classes
  * You can also use auto for everything, but you have to be careful
  * */
+
+
 
 /*
  * Operators:

@@ -1,0 +1,12 @@
+//
+// Created by Alptekin's Macbook on 3.01.2024.
+//
+
+#ifndef BIL142_SMART_POINTERS_MEMORY_SAFETY_H
+#define BIL142_SMART_POINTERS_MEMORY_SAFETY_H
+
+/*
+ *
+ * */
+
+#endif //BIL142_SMART_POINTERS_MEMORY_SAFETY_H

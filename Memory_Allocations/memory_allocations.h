@@ -31,8 +31,10 @@ int staticVar = 10; // Static allocation
 // Dynamic Memory Allocation:
 int* dynamicVar = new int(20); // Dynamic allocation
 delete dynamicVar; // Deallocating memory
+// You want to do nullptr check before delete you can assign it to nullptr after delete
+dynamicVar = nullptr;
 //Memory Leak and Deallocation:
-Explanation:
+//Explanation:
 //Define memory leaks as unreleased memory that's no longer needed.
 //Emphasize the importance of proper deallocation to prevent memory leaks.
 

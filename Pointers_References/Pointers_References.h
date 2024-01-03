@@ -111,6 +111,6 @@ int & squareRef(int & rNumber) {
     return localVar;
 }
 
-
+// TODO: Differences between pointer and reference
 
 #endif //BIL142_POINTERS_REFERENCES_H
