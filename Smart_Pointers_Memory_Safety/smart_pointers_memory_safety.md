@@ -9,7 +9,7 @@ Wild Pointers: Wild pointers are pointers that are declared and allocated memory
 Data Inconsistency: Data inconsistency occurs when some data is stored in memory but is not updated in a consistent manner.
 Buffer Overflow: When a pointer is used to write data to a memory address that is outside of the allocated memory block. This leads to the corruption of data which can be exploited by malicious attackers.
 
-
+```
 
 #include <iostream>
 using namespace std;
@@ -35,3 +35,4 @@ int main()
         fun();
     }
 }
+```
