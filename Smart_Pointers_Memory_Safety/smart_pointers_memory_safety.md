@@ -8,3 +8,30 @@ Dangling Pointers: A dangling pointer is a pointer that occurs at the time when 
 Wild Pointers: Wild pointers are pointers that are declared and allocated memory but the pointer is never initialized to point to any valid object or address.
 Data Inconsistency: Data inconsistency occurs when some data is stored in memory but is not updated in a consistent manner.
 Buffer Overflow: When a pointer is used to write data to a memory address that is outside of the allocated memory block. This leads to the corruption of data which can be exploited by malicious attackers.
+
+
+
+#include <iostream>
+using namespace std;
+ 
+class Rectangle {
+private:
+    int length;
+    int breadth;
+};
+ 
+void fun()
+{
+    // By taking a pointer p and
+    // dynamically creating object
+    // of class rectangle
+    Rectangle* p = new Rectangle();
+}
+ 
+int main()
+{
+    // Infinite Loop
+    while (1) {
+        fun();
+    }
+}
