@@ -46,7 +46,81 @@ As we’ve known unconsciously not deallocating a pointer causes a memory leak t
 A Smart Pointer is a wrapper class over a pointer with an operator like * and -> overloaded. The objects of the smart pointer class look like normal pointers. But, unlike Normal Pointers it can deallocate and free destroyed object memory.
 
 The idea is to take a class with a pointer, destructor, and overloaded operators like * and ->. Since the destructor is automatically called when an object goes out of scope, the dynamically allocated memory would automatically be deleted (or the reference count can be decremented).
+memory header must included.
+
+Unique Pointers
+A unique pointer does not share ownership that means unique_ptr stores one pointer only and will free the resource at the end of the scope.
+
+
+For checking Diagrams
+https://www.geeksforgeeks.org/smart-pointers-cpp/ 
 
 ```
+#include <iostream>
+#include <memory>
+
+int main() {
+  auto ptr = std::make_unique<int>(10); // Always construct with make_unique function
+} //
+```
+
+Shared Pointers
+By using shared_ptr more than one pointer can point to this one object at a time. A shared pointer does share ownership, and will only free the resource when there are no other owners counted and it has reached the end of the scope and it’ll maintain a Reference Counter using the use_count() method.
+```
+#include <iostream>
+#include <memory>
+
+int main() {
+  auto ptr = std::make_shared<int>(10);
+
+  std::cout << ptr.use_count() << "\n"; // Prints the reference count (1)
+  {
+    auto ptr2 = ptr; // Reference count is now 2
+    std::cout << ptr2.use_count() << '\n'; // Prints the reference count (2)
+  } // The ptr2 reaches end of scope, reference count is 1 so resource not freed
+
+  std::cout<< *ptr << "\n";
+} // The ptr reaches end of scope, reference count is 0 so resource is freed
+```
+
+Weak Pointer
+Weak_ptr is a smart pointer that holds a non-owning reference to an object. It’s much more similar to shared_ptr except it’ll not maintain a Reference Counter. In this case, a pointer will not have a stronghold on the object. The reason is if suppose pointers are holding the object and requesting for other objects then they may form a Deadlock. 
+
 
 ```
+#include <iostream>
+using namespace std;
+// Dynamic Memory management library
+#include <memory>
+ 
+class Rectangle {
+    int length;
+    int breadth;
+ 
+public:
+    Rectangle(int l, int b)
+    {
+        length = l;
+        breadth = b;
+    }
+ 
+    int area() { return length * breadth; }
+};
+ 
+int main()
+{
+    //---\/ Smart Pointer
+    shared_ptr<Rectangle> P1(new Rectangle(10, 5));
+   
+    // create weak ptr
+    weak_ptr<Rectangle> P2 (P1);
+   
+    // This'll print 50
+    cout << P1->area() << endl;
+ 
+    // This'll print 1 as Reference Counter is 1
+    cout << P1.use_count() << endl;
+    return 0;
+}
+```
+
