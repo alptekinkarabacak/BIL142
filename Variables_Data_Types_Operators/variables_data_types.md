@@ -46,7 +46,9 @@ You can check the limits of types with
 CASTING
 Static Cast
 The static_cast operator is the most commonly used casting operator in C++. It performs compile-time type conversion and is mainly used for explicit conversions that are considered safe by the compiler. Casting between primitive types
+
 static_cast <new_type> (expression);
+
 ```
 int num = 10;
 
