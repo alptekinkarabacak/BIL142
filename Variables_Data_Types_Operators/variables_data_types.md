@@ -86,6 +86,7 @@ Prints what?
 ```
 int a = 10, b = 20;
 float result = a / b;
+float a = 3.0 / 2.0;
 ```
 Ok What about this one
 ```
