@@ -12,9 +12,19 @@ int main() {
 
     const int var = 0;
     constexpr int thx =  5;
-    auto bil142 = 25;
-    bil142 = 28.2;
-    cout<<"The value of bil142 is : "<< bil142 <<"\n"; // Guess this one ?
 
 ```
+Prints what?
+```
+auto bil142 = 25;
+bil142 = 28.2;
+cout<<"The value of bil142 is : "<< bil142 <<"\n";
+```
+There is a c++ function that returns the size of the parameter given
+```
+sizeof(double)
+double foo{0.0};
+sizeof(foo);
+```
+There are other types like uint32_t, uint8_t, uint64_t
 
