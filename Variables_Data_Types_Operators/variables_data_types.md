@@ -12,9 +12,9 @@ int main() {
 
     const int var = 0;
     constexpr int thx =  5;
-    thx = 20;
-    return 0;
-}
+    auto bil142 = 25;
+    bil142 = 28.2;
+    cout<<"The value of bil142 is : "<< bil142 <<"\n"; // Guess this one ?
 
 ```
 
