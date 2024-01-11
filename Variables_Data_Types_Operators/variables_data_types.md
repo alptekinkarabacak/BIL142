@@ -12,7 +12,7 @@ int main() {
     int bam = 0.6;
 
     const int var = 0;
-    constexpr int thx =  5;
+    constexpr int thx =  5; // Difference between this and const
 
 ```
 Prints what?
