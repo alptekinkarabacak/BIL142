@@ -1,4 +1,5 @@
 bool, int, char float, double... primitive data types
+
 int foo; // Decleration, First value is assigned automatically, and it is assigned to garbage value
 
 ```
