@@ -154,6 +154,14 @@ int main() {
     cout <<"b>>1 = "<< static_cast<int>(result)<< "\n";
 }
 ```
+What about this one
+```
+using namespace std;
+unsigned char a = 5;
+unsigned char result{0};
+result = a >> 3;
+cout<<static_cast<int>(result);
+```
 
 LogicalOperators:
 Logical AND  : &&
