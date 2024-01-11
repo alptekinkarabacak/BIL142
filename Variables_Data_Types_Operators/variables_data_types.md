@@ -1,4 +1,10 @@
-bool, int, char float, double... primitive data types
+bool, int, char float, double... primitive data types with different sizes
+```
+int a = pow(2,32);
+std::numeric_limits<int>::max();
+std::cout<<a<<"\n";
+std::cout<<std::numeric_limits<int>::max()<<"\n";
+```
 
 int foo; // Decleration, First value is assigned automatically, and it is assigned to garbage value
 
