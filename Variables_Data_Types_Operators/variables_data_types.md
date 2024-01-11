@@ -14,7 +14,7 @@ int foo; // Decleration, First value is assigned automatically, and it is assign
 ```
 int main() {
     using namespace std; // Explain namespace logic
-    int foo;
+    int foo; // Undefined Behavior
     cout<<"The value of foo is : "<< foo <<endl; // Difference between \n and
     int bar = 5; // initialization
     int baz {5}; // Always Prefer this one with curly braces
