@@ -96,12 +96,18 @@ double result = static_cast<double>(a) / static_cast<double>(b) ;
 ```
 
 Bitwise Operators
-&	Bitwise AND Operator
-|	Bitwise OR Operator
-^	Bitwise XOR Operator
-~	Bitwise Complement Operator
-<<	Bitwise Shift Left Operator
->>	Bitwise Shift Right Operator
+
+'&'	Bitwise AND Operator
+
+'|'	Bitwise OR Operator
+
+'^'	Bitwise XOR Operator
+
+'~'	Bitwise Complement Operator
+
+'<<' Bitwise Shift Left Operator
+
+'>>' Bitwise Shift Right Operator
 ```
 int main() {
     using namespace std;
@@ -135,8 +141,6 @@ int main() {
 }
 ```
 
-
-
 LogicalOperators:
 Logical AND  : &&
 Logical OR :  || 
@@ -145,6 +149,39 @@ Logical NOT : !
 ```
 bool isTrue = true, isFalse = false;
 bool result = (isTrue && !isFalse) || (5 > 3);
+```
+
+Assignment Operators
+```
+int x = 10;
+x += 5; // Equivalent to x = x + 5;
+x *= 2; // Equivalent to x = x * 2;
+```
+Pre Increment Operator and Post Increment
+```
+int foo{2};
+++foo; // Pre increment
+foo++; // Pre increment
+```
+At the end of the road this is the same expression with this
+```
+int foo{2};
+foo = foo + 1;
+```
+Can I perform the same operator with different way?
+
+Anyway, at the end of the road you will get value incremented by 1, but different middle steps.
+Pre Increment
+```
+int foo{2};
+int bar {++foo};
+cout<<"bar is : " << bar << "\n";
+```
+Post Increment
+```
+int foo{2};
+int bar {foo++};
+cout<<"bar is : " << bar << "\n";
 ```
 
 
