@@ -83,7 +83,7 @@ int num = 10;
 Operators:
 arithmetic operators: +, -, *, /, %
 ```
-int a = 10, b = 20;
+int a{10}, b{20};
 int sum = a + b;
 int modOperator = 20 % 10;
 ```
