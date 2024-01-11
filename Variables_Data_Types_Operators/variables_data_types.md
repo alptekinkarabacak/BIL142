@@ -10,6 +10,7 @@ int main() {
     int bar = 5; // initialization
     int baz {5}; // Always Prefer this one with curly braces
     int bam = 0.6;
+    bool foo {5};
 
     const int var = 0;
     constexpr int thx =  5; // Difference between this and const
