@@ -161,7 +161,7 @@ Pre Increment Operator and Post Increment
 ```
 int foo{2};
 ++foo; // Pre increment
-foo++; // Pre increment
+foo++; // Post increment
 ```
 At the end of the road this is the same expression with this
 ```
@@ -185,38 +185,16 @@ cout<<"bar is : " << bar << "\n";
 ```
 
 
-/*
- * Operators:
-Arithmetic Operators:
-arithmetic operators: +, -, *, /, %.
-int a = 10, b = 20;
-int sum = a + b;
-int difference = b - a;
-float result = b / a Is there a problem on this?;
-float preciseResult = static_cast<float>(b) / a; // Casting for precise division
- * post increment and pre increment
-* btw always stay away from c type casting
- *
- * */
-
-/*  Logical and Relational Operators
-bool isTrue = true, isFalse = false;
-bool result = (isTrue && !isFalse) || (5 > 3);
-Assignment Operators
-int x = 10;
-x += 5; // Equivalent to x = x + 5;
-x *= 2; // Equivalent to x = x * 2;
-
-
-
-
-
-
-
-
 Prints what?
+```
+uint8_t foo = 255;
+std::cout<<static_cast<int>(foo++);
+```
+What about this one?
+```
 uint8_t foo = 255;
 std::cout<<static_cast<int>(++foo);
+```
 
 
 
