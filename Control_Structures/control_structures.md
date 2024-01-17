@@ -19,6 +19,35 @@ if (condition) {
   // body of if statement
 }
 ```
+The if statement evaluates the condition inside the parentheses ( ).
+
+If the condition evaluates to true, the code inside the body of if is executed.
+If the condition evaluates to false, the code inside the body of if is skipped.
+
+// Program to print positive number entered by the user
+// If the user enters a negative number, it is skipped
+```
+#include <iostream>
+using namespace std;
+
+int main() {
+
+  int number;
+
+  cout << "Enter an integer: ";
+  cin >> number;
+
+  // checks if the number is positive
+  if (number > 0) {
+    cout << "You entered a positive integer: " << number << endl;
+  }
+
+  cout << "This statement is always executed.";
+
+  return 0;
+}
+```
+if...else
 
 
 
