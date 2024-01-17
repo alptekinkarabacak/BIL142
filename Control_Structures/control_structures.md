@@ -275,44 +275,7 @@ int main() {
 
 
 
-Cyclomatic Complexity
 
-Cyclomatic complexity is a software metric used to indicate the complexity of a program
-More control cases cause more complexity. Try to split them into different functions or classes maybe.
-```
-int x{25}, y{12}
-int result = 0;
-    if (x > 0) 
-    {
-        if (y > 0) {
-            result = x + y;
-        } 
-        else if (y < 0) {
-            result = x - y;
-        } 
-        else {
-            result = x * y;
-        }
-    } 
-    else if (x < 0) {
-        if (y > 0) {
-            result = y - x;
-        } else if (y < 0) {
-            result = x * y;
-        } else {
-            result = x / y;
-        }
-    } 
-    else {
-        if (y > 0) {
-            result = x * y + 1;
-        } else if (y < 0) {
-            result = x * y - 1;
-        } else {
-            result = x * y * y;
-        }
-    }
-```
 switch..case Statement
 The switch statement allows us to execute a block of code among many alternatives.
 switch (expression)  {
@@ -332,6 +295,7 @@ switch (expression)  {
         // code to be executed if
         // expression doesn't match any constant
 }
+
 How does the switch statement work?
 
 The expression is evaluated once and compared with the values of each case label.
@@ -410,4 +374,42 @@ int main() {
             break;
     }
 }
+```
+Cyclomatic Complexity
+
+Cyclomatic complexity is a software metric used to indicate the complexity of a program
+More control cases cause more complexity. Try to split them into different functions or classes maybe.
+```
+int x{25}, y{12}
+int result = 0;
+    if (x > 0) 
+    {
+        if (y > 0) {
+            result = x + y;
+        } 
+        else if (y < 0) {
+            result = x - y;
+        } 
+        else {
+            result = x * y;
+        }
+    } 
+    else if (x < 0) {
+        if (y > 0) {
+            result = y - x;
+        } else if (y < 0) {
+            result = x * y;
+        } else {
+            result = x / y;
+        }
+    } 
+    else {
+        if (y > 0) {
+            result = x * y + 1;
+        } else if (y < 0) {
+            result = x * y - 1;
+        } else {
+            result = x * y * y;
+        }
+    }
 ```
