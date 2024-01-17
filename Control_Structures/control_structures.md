@@ -1,3 +1,4 @@
+
 If Statement / If Condition
 
 In computer programming, we use the if...else statement to run one block of code under certain conditions and another block of code under different conditions.
@@ -427,3 +428,168 @@ int main() {
     return 0;
 }
 ```
+
+LOOPS
+
+In Programming, sometimes there is a need to perform some operation more than once or (say) n number of times. Loops come into use when we need to repeatedly execute a block of statements. 
+
+For example: Suppose we want to print “Hello World” 10 times. This can be done in two ways as shown
+
+Manually we have to write cout for the C++ statement 10 times. Let’s say you have to write it 20 times (it would surely take more time to write 20 statements) now imagine you have to write it 100 times, helps you to avoid cut and pasted code.
+
+There are mainly two types of loops:
+
+Entry Controlled loops: In this type of loop, the test condition is tested before entering the loop body. For Loop and While Loop is entry-controlled loops.
+
+Exit Controlled Loops: In this type of loop the test condition is tested or evaluated at the end of the loop body. Therefore, the loop body will execute at least once, irrespective of whether the test condition is true or false. the do-while loop is exit controlled loop.
+
+For Loop-
+
+A For loop is a repetition control structure that allows us to write a loop that is executed a specific number of times. The loop enables us to perform n number of steps together in one line. 
+
+Syntax:
+
+for (initialization expr; test expr; update expr)
+{    
+     // body of the loop
+     // statements we want to execute
+}
+
+```
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+    for (int i{1}; i <= 5; i++) {
+        cout << "Hello World\n";
+    }
+ 
+    return 0;
+}
+```
+What if this one:
+```
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+    for (int i{1}; i < 1; i++) {
+        cout << "Hello World\n";
+    }
+ 
+    return 0;
+}
+```
+Flow is like this: 
+1) initialize the expression or expressions 
+2) Check the condition or conditions
+3) Run the body of the for loop
+4) Update expression or expressions
+5) Return to step 2
+
+For loop can also be valid in the given form:-
+```
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+    for (int i = 0, j = 10, k = 20; (i + j + k) < 100;
+         j++, k--, i += k) {
+        cout << i << " " << j << " " << k << "\n";
+    }
+    return 0;
+}
+```
+
+Before we continue to loops lets talk about scope and scoping.
+
+In general, the scope is defined as the extent up to which something can be worked with. In programming also the scope of a variable is defined as the extent of the program code within which the variable can be accessed or declared or worked with.
+The variables declared inside in a scope is called local variables.
+
+Scoping is performed by ‘{‘ and ‘}’. 
+
+Local variables do not exist outside the block in which they are declared, i.e. they can not be accessed or used outside that block.
+
+Because at the end of the scope all local variables will be deleted. Except it is defined static. We will deep dive into static variables.
+
+Not only needs loops or if else statements for creating scopes.
+Lets create a scope without using these structures:
+```  
+int main()
+{
+    int bar = 10;
+    {
+        int foo{1};
+        foo += bar;
+        cout<< "\nValue of local foo is " << foo << "\n";
+    }
+    return 0;
+}
+```
+Or we can create another variable with the same name a variable which is on outer scope
+```
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int bar = 10;
+    {
+        int foo{1};
+        int bar{2};
+        foo += bar;
+        cout<< "\nValue of local foo is " << foo << "\n";
+        cout<< "\nValue of inner bar is " << bar << "\n";
+    }
+
+    cout<< "\nValue of outer bar is " << bar << "\n";
+
+    return 0;
+}
+
+```
+
+Because of deleting of local variables at the end of the scope, you can not access 'i'.
+```
+for (int i{1}; i < 1; i++) {
+        cout << "Hello World\n";
+}
+++i;
+
+```
+An example of hiding declared variables before a loop is:
+```
+int main()
+{
+    int i = 99;
+    for (int i = 0; i < 5; i++) {
+        cout << i << "\t";
+    }
+    cout << "\n" << i;
+    return 0;
+}
+```
+
+But if you want to use the already declared variable and not hide it, then must not redeclare that variable.
+```
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+    int i = 99;
+    for (i = 0; i < 5; i++) {
+        cout << i << " ";
+    }
+    cout << "\n" << i;
+    return 0;
+}
+```
+
+
+
+// TODO: Volatile and cpu usage.
+
