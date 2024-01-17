@@ -591,5 +591,5 @@ int main()
 
 
 
-// TODO: Volatile and cpu usage.
+// TODO: Loop exit with switch break, Volatile and cpu usage.
 
