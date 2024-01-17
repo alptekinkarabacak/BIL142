@@ -279,7 +279,7 @@ Cyclomatic Complexity
 
 Cyclomatic complexity is a software metric used to indicate the complexity of a program
 More control cases cause more complexity. Try to split them into different functions or classes maybe.
-
+```
 int x{25}, y{12}
 int result = 0;
     if (x > 0) 
@@ -312,5 +312,5 @@ int result = 0;
             result = x * y * y;
         }
     }
-
+```
 
