@@ -1,5 +1,6 @@
 If Statement / If Condition
 In computer programming, we use the if...else statement to run one block of code under certain conditions and another block of code under different conditions.
+Conditions help you to create business logic.
 
 For example, assigning grades (A, B, C) based on marks obtained by a student.
     if the percentage is above 90, assign grade A
@@ -219,3 +220,97 @@ int main() {
 }
 ```
 Ternary Operator
+A ternary operator evaluates the test condition and executes a block of code based on the result of the condition.
+
+Its syntax is
+
+condition ? expression1 : expression2;
+
+Here, condition is evaluated and
+
+if condition is true, expression1 is executed.
+And, if condition is false, expression2 is executed.
+The ternary operator takes 3 operands (condition, expression1 and expression2). Hence, the name ternary operator.
+```
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+  double marks;
+
+  // take input from users
+  cout << "Enter your marks: ";
+  cin >> marks;
+
+  // ternary operator checks if
+  // marks is greater than 40
+  string result = (marks >= 40) ? "passed" : "failed";
+
+  cout << "You " << result << " the exam.";
+
+  return 0;
+}
+```
+Nested Ternary Operators
+```
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+  int number = 25;
+  string result;
+
+  // nested ternary operator to find whether
+  // number is positive, negative, or zero
+  result = (number == 0) ? "Zero" : ((number > 0) ? "Bla" : "Boom");
+
+  cout << "Number is " << result;
+
+  return 0;
+}
+```
+
+
+
+
+Cyclomatic Complexity
+
+Cyclomatic complexity is a software metric used to indicate the complexity of a program
+More control cases cause more complexity. Try to split them into different functions or classes maybe.
+
+int x{25}, y{12}
+int result = 0;
+    if (x > 0) 
+    {
+        if (y > 0) {
+            result = x + y;
+        } 
+        else if (y < 0) {
+            result = x - y;
+        } 
+        else {
+            result = x * y;
+        }
+    } 
+    else if (x < 0) {
+        if (y > 0) {
+            result = y - x;
+        } else if (y < 0) {
+            result = x * y;
+        } else {
+            result = x / y;
+        }
+    } 
+    else {
+        if (y > 0) {
+            result = x * y + 1;
+        } else if (y < 0) {
+            result = x * y - 1;
+        } else {
+            result = x * y * y;
+        }
+    }
+
+
