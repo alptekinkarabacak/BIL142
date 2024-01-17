@@ -313,4 +313,101 @@ int result = 0;
         }
     }
 ```
+switch..case Statement
+The switch statement allows us to execute a block of code among many alternatives.
+switch (expression)  {
+    case constant1: // constant is important!!!!
+        // code to be executed if 
+        // expression is equal to constant1;
+        break;
 
+    case constant2:
+        // code to be executed if
+        // expression is equal to constant2;
+        break;
+        .
+        .
+        .
+    default:
+        // code to be executed if
+        // expression doesn't match any constant
+}
+How does the switch statement work?
+
+The expression is evaluated once and compared with the values of each case label.
+
+If there is a match, the corresponding code after the matching label is executed. For example, if the value of the variable is equal to constant2, the code after case constant2: is executed until the break statement is encountered.
+If there is no match, the code after default: is executed.
+
+Note: We can do the same thing with the if...else..if ladder. However, the syntax of the switch statement is cleaner and much easier to read and write.
+```
+int day{4};
+switch (day) {
+  case 1:
+    cout << "Monday";
+    break;
+  case 2:
+    cout << "Tuesday";
+    break;
+  case 3:
+    cout << "Wednesday";
+    break;
+  case 4:
+    cout << "Thursday";
+    break;
+  case 5:
+    cout << "Friday";
+    break;
+  case 6:
+    cout << "Saturday";
+    break;
+  case 7:
+    cout << "Sunday";
+    break;
+  default:
+    cout << "Undefined day";
+    break;
+}
+```
+Dont forget break the statement with break;
+You can use nested switch cases
+```
+int main() {
+    int day{4};
+    int hour{13};
+    switch (day) {
+        case 1:
+            cout << "Monday";
+            break;
+        case 2:
+            cout << "Tuesday";
+            break;
+        case 3:
+            cout << "Wednesday";
+            break;
+        case 4:
+            cout << "Thursday ";
+            switch (hour) {
+                case 0:
+                    cout << "Midnight ";
+                case 13:
+                    cout << "Afternoon";
+                case 18:
+                    cout << "Evening";
+            }
+            break;
+        case 5:
+            cout << "Friday";
+            break;
+        case 6:
+            cout << "Saturday";
+            break;
+        case 7:
+            cout << "Sunday";
+            break;
+        default:
+            cout << "Undefined day";
+            break;
+    }
+}
+```
