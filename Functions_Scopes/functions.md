@@ -325,17 +325,3 @@ Lets deep dive into it.
 
 Fact?
 
-
-
-
-
-
-
-You can not define another function in Function definition is an error. Only call another function which is already defined.
-The only way to do this creating lambda function(Modern C++) feature.
-
-
-
-
-
-
