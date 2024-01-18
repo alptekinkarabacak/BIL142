@@ -313,6 +313,10 @@ int main() {
   cout << result;
   return 0;
 }
+
+You can return a void function if you want to exit in some case.
+
+
 ```
 Lets deep dive into it.
 
@@ -323,5 +327,7 @@ Lets deep dive into it.
 10 + 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 + sum(0)
 10 + 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 + 0
 
+
 Fact?
+
 
