@@ -154,8 +154,72 @@ void staticLocalFunc() {
     cout << "sum is: " << a + b + foo++ << "\n";
 }
 ```
+Parameters and Arguments
+Information can be passed to functions as a parameter. Parameters act as variables inside the function.
+
+Parameters are specified after the function name, inside the parentheses. You can add as many parameters as you want, just separate them with a comma:
+```
+void functionName(parameter1, parameter2, parameter3) {
+  // code to be executed
+}
+```
+
+You can define any count of parameter in a function but, don't push too hard. If you need define lot of parameter always consider wrap parameter into a class.
+
+Default Parameter Value
+You can also use a default parameter value, by using the equals sign (=).
+
+If we call the function without an argument, it uses the default value ("Sweden"):
+```
+void myFunction(string country = "Norway") {
+  cout << country << "\n";
+}
+
+int main() {
+  myFunction("Sweden");
+  myFunction("UK");
+  myFunction();
+  myFunction("USA");
+  return 0;
+}
+```
+Btw is there something wrong with this code?
+
+Default value of a parameter always define in the decleration.
+
+And if you define a default value to a parameter, after that parameter all other parameters must have a default value.
+```
+void myFunction(int b, string country = "Norway", int a);
+```
+But why there is a rule like that?
+
+*********** Function Overloading *********
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 You can not define another function in Function definition is an error. Only call another function which is already defined.
+
+
+
+
 
 
 
