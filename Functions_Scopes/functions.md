@@ -109,6 +109,55 @@ void myFunction() {
 }
 ```
 
+TDD (Test Driven Development)
+
+Const Correctness
+
+Memory Scoping in Functions:
+
+Like all structures like Loops, Conditions, Functions has memory scope {}, without indication of memory scope is an error in functions unlike if, for, while loops.
+```
+inline bool isItDivable(int first, int second)
+    return (second == 0) ? false : true;
+```
+You can create local variables in a function scope like loops or if conditions.
+But remember, after end of it's scope it can not accessible.
+```
+double calculateMultiple(const double first, const int second) {
+    int result{0};
+    result = first * second;
+    return result;
+}
+
+++result; // result is not defined error.
+```
+The only vay protecting the last state of a local variable initialize it  with static keyword. Static variables only created once in the whole lifetime of a executable.
+```
+#include <iostream>
+using namespace std;
+#include "Test.h"
+
+void staticLocalFunc();
+int main()
+{
+   staticLocalFunc();
+   staticLocalFunc();
+   staticLocalFunc();
+   staticLocalFunc();
+   
+   // But still you can not acces foo outside of it' s scope.
+}
+
+void staticLocalFunc() {
+    int a{20}, b{30};
+    int static foo{0};
+    cout << "sum is: " << a + b + foo++ << "\n";
+}
+```
+
+You can not define another function in Function definition is an error. Only call another function which is already defined.
+
+
 
 
 
