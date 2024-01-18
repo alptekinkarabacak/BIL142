@@ -589,7 +589,69 @@ int main()
 }
 ```
 
+while loop
+while(condition) {
+//Body
+}
+if the condition returns true while iteration runs.
 
+You can break the loop with "break" keyword.
+```
+int i = 0;
+while (i < 10) {
+  cout << i << "\n";
+  i++;
+  if (i == 4) {
+    break;
+  }
+}
+```
+Or we can jump to beginning of a loop with "continue" keyword.
+```
+int i = 0;
+while (i < 10) {
+  if (i == 4) {
+    i++;
+    continue;
+  }
+  cout << i << "\n";
+  i++;
+}
+```
+for loop has same break rule
+Also you can use continue in for loop, on the continue line update expression will run.
+This example skips the value of 4:
+```
+for (int i = 0; i < 10; i++) {
+  if (i == 4) {
+    continue;
+  }
+  cout << i << "\n";
+}
+```
+Note: But you can not perform the same thing with switch, because switch needs to break keyword aside if statement.
+TODO: Volatile and cpu usage
+What about this code?
+```
+#include <iostream>
+using namespace std;
+#include "Test.h"
 
-// TODO: Loop exit with switch break, Volatile and cpu usage.
+int main() {
+    volatile int a;
+    a = true;
+    while(a) {
+        switch (a) {
+            case 20:
+                cout << "break from a loop\n";
+                break;
+        }
+
+        ++a;
+    }
+
+    cout<<"Value of a: "<< a << "\n";
+}
+```
+
 
