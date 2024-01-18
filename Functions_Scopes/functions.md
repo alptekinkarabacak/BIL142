@@ -195,6 +195,112 @@ But why there is a rule like that?
 
 *********** Function Overloading *********
 
+Consider the following example, which have two functions that add numbers of different type:
+```
+int plusFuncInt(int x, int y) {
+  return x + y;
+}
+
+double plusFuncDouble(double x, double y) {
+  return x + y;
+}
+
+int main() {
+  int myNum1 = plusFuncInt(8, 5);
+  double myNum2 = plusFuncDouble(4.3, 6.26);
+  cout << "Int: " << myNum1 << "\n";
+  cout << "Double: " << myNum2;
+  return 0;
+}
+```
+
+Instead of defining two functions that should do the same thing, it is better to overload one.
+
+In the example below, we overload the plusFunc function to work for both int and double:
+```
+int plusFunc(int x, int y) {
+  return x + y;
+}
+
+double plusFunc(double x, double y) {
+  return x + y;
+}
+
+int main() {
+  int myNum1 = plusFunc(8, 5);
+  double myNum2 = plusFunc(4.3, 6.26);
+  cout << "Int: " << myNum1 << "\n";
+  cout << "Double: " << myNum2;
+  return 0;
+}
+```
+
+You can overload it with different types or you can overload it different number of parameters.
+But you can not overload it with different return values.
+What about this one?
+```
+#include <iostream>
+using namespace std;
+#include "Test.h"
+
+int plusFunc(int x, int y) {
+    return x + y;
+}
+
+double plusFunc(double x, double y) {
+    return x + y;
+}
+
+int plusFunc(int x, int y, int z) {
+    return x + y + z;
+}
+
+int plusFunc(int x, int y, int a, int z = 30) {
+    return x + y + a + z;
+}
+
+int main() {
+    int result = plusFunc(1, 2, 3);
+    cout << "Int: " << myNum1 << "\n";
+    cout << "Double: " << myNum2;
+    return 0;
+}
+```
+Ok, aand this one?
+
+```
+#include <iostream>
+using namespace std;
+#include "Test.h"
+
+int plusFunc(int x, int y) {
+    return x + y;
+}
+
+double plusFunc(double x, double y) {
+    return x + y;
+}
+
+int plusFunc(int x, int y, int z) {
+    return x + y + z;
+}
+
+int plusFunc(int x, int y, int a, int z = 30, int t = 40) {
+    return x + y + a + z;
+}
+
+int main() {
+    int result = plusFunc(1, 2, 3);
+    cout << "Int: " << myNum1 << "\n";
+    cout << "Double: " << myNum2;
+    return 0;
+}
+```
+
+
+
+
+
 
 
 
