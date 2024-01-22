@@ -10,13 +10,13 @@ int main()
 ```
 Reference
 
-A reference variable is a “reference” to an existing variable , references are created with the & operator.
+A reference variable is a “reference” to an existing variable, references are created with the & operator.
 
 Think of a variable name as a label attached to the variable’s address in memory. You can then think of a reference as a second label attached to that memory address. Therefore, you can access the contents of the variable through either the original variable name or the reference.
 
 Example:
 
-In the below example, when we write "int &foo_ref = food;" We are actually saying "create a reference called foo_ref in the memory address of foo variable". Previously, only foo was attached to the memory address. But right now, there are 2 labels (foo and foo_ref) attached to the memory address.
+In the below example, when we write "int &foo_ref = foo;" We are actually saying "create a reference called foo_ref in the memory address of foo variable". Previously, only foo was attached to the memory address. But right now, there are 2 labels (foo and foo_ref) attached to the memory address.
 ```
 #include <iostream>
 using namespace std;
