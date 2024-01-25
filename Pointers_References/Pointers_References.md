@@ -29,10 +29,24 @@ int main()
     cout<<"foo_ref is : " << foo_ref << "\n";
     cout<<"foo is : " << foo << "\n";
     foo_ref = 100;
-    cout<<"foo_res is changed\n ";
+    cout<<"foo_ref is changed\n ";
     cout<<"foo_ref is : " << foo_ref << "\n";
     cout<<"foo is : " << foo << "\n";
     return 0;
 }
 ```
 The memory addresses of foo and foo_ref are same.
+```
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int foo{0};
+    int& foo_ref = foo;
+    foo = 20;
+    cout<<" Address of foo_ref is : " << &foo_ref << "\n";
+    cout<<"Address of foo is : " << &foo << "\n";
+    return 0;
+}
+```
