@@ -189,11 +189,10 @@ int main()
 ```
 In the example above foo and bar pointers point same address.
 
-Dont remember integer pointer typed value needs an integer to point, or a double pointer typed value needs a double.
+Dont forget integer pointer typed value needs an integer to point, or a double pointer typed value needs a double.
 ```
 #include <iostream>
 using namespace std;
-#include "Test.h"
 
 int main()
 {
@@ -206,6 +205,78 @@ int main()
     alp = &value;
 }
 These assignments are compile errors.
+
+Dereferencing:
+How Can I assign a value to a pointer that points?
+Is below legal?
+```
+int* foo{12}; 
+```
+Or this?
+```
+int* foo;
+foo = 12;
+```
+We need dereference operator to access the value of pointer points.
+We can dereference a pointer to get the data in the memory address that pointer stores.
+```
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int foo{20};
+    int* foo_ptr;
+    foo_ptr = &foo;
+}
+```
+Dont confuse about the '*' operator.
+When you use '*' in declaration, it creates a pointer variable.
+Otherwise, it is a deference operator.
+```
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int foo{20};
+    int* foo_ptr;
+    foo_ptr = &foo;
+    cout << foo << "\n";
+    cout << *foo_ptr << "\n";
+    *foo_ptr = 30;
+    cout << foo << "\n";
+    cout << *foo_ptr << "\n";
+}
+```
+Ok how Can I create a pointer and assign a value to that pointer without another variable?
+ 
+ 
+
+
+
+
+```
+#include <iostream>
+using namespace std;
+
+int main()
+{
+
+    int* foo_ptr;
+    {
+        int foo{20};
+        foo_ptr = &foo;
+    }
+    
+    cout << *foo_ptr;
+}
+```
+
+
+
+
+
 
 
 
