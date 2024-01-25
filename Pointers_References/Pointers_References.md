@@ -8,6 +8,19 @@ int main()
     return 0;
 }
 ```
+You can not assign another address with '&' operator.
+```
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int foo{0};
+    int& foo_ref = foo;
+    &foo = 0x1253495;
+    return 0;
+}
+```
 Reference
 
 A reference variable is a “reference” to an existing variable, references are created with the & operator.
@@ -50,3 +63,4 @@ int main()
     return 0;
 }
 ```
+
