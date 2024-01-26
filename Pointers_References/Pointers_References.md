@@ -106,10 +106,11 @@ So, what’s a pointer? A pointer is a variable that stores the memory address. 
 Pointers store a memory address, so we can also access the memory address and change the data in it.
 
 A pointer is created with the * operator:
+And always initialize a pointer with nullptr, or a valid address.
 ```
-int* foo;
-double* bar;
-char* bla;
+int* foo{nullptr};
+double* bar{nullptr};
+char* bla{nullptr};
 ```
 Dont forget this: a, b and c all are a pointer. But, foo must point to integer, bar must be point to double, and bla must be point char. But at the end, these all are a pointer.
 
@@ -122,9 +123,9 @@ using namespace std;
 
 int main()
 {
-    int* foo;
-    double* bar;
-    char* bla;
+    int* foo{nullptr};
+    double* bar{nullptr};
+    char* bla{nullptr};
     cout << "size of foo pointer is: " << sizeof(foo) << "\n";
     cout << "size of bar pointer is: " << sizeof(bar) << "\n";
     cout << "size of bla pointer is: " << sizeof(bla) << "\n";
@@ -132,7 +133,7 @@ int main()
 ```
 You see that all the pointer sizes are the same because they are pointers and the size of a pointer does not relate with which data type points. Pointer sizes are related to the processor architecture. It is too important to understand this to understand pointers.
 ```
-int* foo; 
+int* foo{nullptr}; 
 ```
 foo is a pointer variable so it stores an address in it
 When you try to print the value of foo you get an address.
@@ -143,7 +144,7 @@ using namespace std;
 
 int main()
 {
-    int* foo;
+    int* foo{nullptr};
     cout<<"The value of foo is: " << foo << "\n";
 }
 ```
@@ -156,7 +157,7 @@ using namespace std;
 
 int main()
 {
-    int* foo;
+    int* foo{nullptr};
     foo = 0x10077dbd0;
 }
 ```
@@ -168,7 +169,7 @@ using namespace std;
 
 int main()
 {
-    int* alp;
+    int* alp{nullptr};
     int value;
     alp = &value;
 }
@@ -182,8 +183,8 @@ using namespace std;
 
 int main()
 {
-    int* foo;
-    int* bar;
+    int* foo{nullptr};
+    int* bar{nullptr};
     foo = bar;
 }
 ```
@@ -196,11 +197,11 @@ using namespace std;
 
 int main()
 {
-    int* foo;
-    double* bar;
+    int* foo{nullptr};
+    double* bar{nullptr};
     foo = bar;
     // or
-    int* alp;
+    int* alp{nullptr};
     double value;
     alp = &value;
 }
@@ -226,7 +227,7 @@ using namespace std;
 int main()
 {
     int foo{20};
-    int* foo_ptr;
+    int* foo_ptr{nullptr};
     foo_ptr = &foo;
 }
 ```
@@ -240,7 +241,7 @@ using namespace std;
 int main()
 {
     int foo{20};
-    int* foo_ptr;
+    int* foo_ptr{nullptr};
     foo_ptr = &foo;
     cout << foo << "\n";
     cout << *foo_ptr << "\n";
@@ -250,9 +251,139 @@ int main()
 }
 ```
 Ok how Can I create a pointer and assign a value to that pointer without another variable?
- 
- 
+First we need to talk about stack and heap memory.
+Heap memory and stack memory is two different memory concepts of RAM of a processor.
 
+Stack memory:
+
+The size of memory to be allocated is known to the compiler and whenever a function is called, its variables get memory allocated on the stack. And whenever the function call is over, the memory for the variables is de-allocated. This all happens using some predefined routines in the compiler. A programmer does not have to worry about memory allocation and de-allocation of stack variables. This kind of memory allocation is also known as Temporary memory allocation because as soon as the method finishes its execution all the data belonging to that method flushes out from the stack automatically. This means any value stored in the stack memory scheme is accessible as long as the method hasn’t completed its execution and is currently running.
+```
+// All these variables get memory
+  // allocated on stack
+  int a;
+  int b[10];
+  int n = 20;
+  int c[n];
+```
+Heap Memory:
+
+The memory is allocated during the execution of instructions written by programmers. Note that the name heap has nothing to do with the heap data structure. It is called a heap because it is a pile of memory space available to programmers to allocate and de-allocate. Every time when we made an object it always creates in Heap-space and the referencing information to these objects is always stored in Stack-memory. Heap memory allocation isn’t as safe as Stack memory allocation because the data stored in this space is accessible or visible to all threads. If a programmer does not handle this memory well, a memory leak can happen in the program.
+
+```
+#include <iostream>
+#include <array>
+using namespace std;
+
+int main()
+{
+    int* foo = new int(10); // initialize with 10
+    int* bar = new int();
+    double* baz = new double();
+    char* boom = new char();
+    // or block of memory
+    int* ptr  = new int[10];
+}
+```
+or
+```
+#include <iostream>
+#include <array>
+using namespace std;
+
+int main()
+{
+    size_t size_of_ptr;
+    int* block_of_data{nullptr};
+    cout << "Enter a size for block of data\n ";
+    cin >> size_of_ptr;
+    block_of_data = new int(size_of_ptr);
+    cout << "Memory is allocated with size: " << size_of_ptr << "\n";
+    block_of_data[3] = 30;
+    cout << block_of_data[3] << "\n";
+}
+```
+But you can not these types of things with stack allocations
+```
+#include <iostream>
+#include <array>
+using namespace std;
+
+int main()
+{
+    size_t size_of_ptr;
+    int block_of_data[];
+}
+```
+Only way to this in dynamically is:
+```
+#include <iostream>
+#include <array>
+using namespace std;
+
+int main()
+{
+    size_t size_of_ptr;
+    cout << "Enter a size for block of data\n ";
+    cin >> size_of_ptr;
+    int block_of_data[size_of_ptr];
+    cout << "Memory is allocated with size: " << size_of_ptr << "\n";
+}
+```
+
+```
+
+#include <iostream>
+#include <array>
+using namespace std;
+
+int main()
+{
+    size_t size_of_ptr;
+    int* block_of_data{nullptr};
+    cout << "Enter a size for block of data\n ";
+    cin >> size_of_ptr;
+    block_of_data  = new int(size_of_ptr);
+    cout << "Memory is allocated with size: " << size_of_ptr << "\n";
+    block_of_data[20] = 30;
+    cout << "The value of the 20th index is: " << block_of_data[20] << "\n";
+}
+```
+Thats why dont use pointer arrays, you must use std data containers like vectors, arrays for storing block of data.
+```
+#include <iostream>
+#include <array>
+using namespace std;
+
+int main()
+{
+    const size_t size_of_data{5};
+    std::array<int, size_of_data> block_of_data;
+    cout << "Enter a size for block of data\n ";
+    block_of_data.at(20) = 30;
+    cout << "The value of the 20th index is: " << block_of_data.at(20) << "\n";
+}
+```
+
+Anyway dont forget the deallocate the pointer with delete.
+```
+#include <iostream>
+#include <array>
+using namespace std;
+
+int main()
+{
+    int* foo = new int(10); // initialize with 10
+    int* bar = new int();
+    double* baz = new double();
+    char* boom = new char();
+    // or block of memory
+    int* ptr  = new int[10];
+    delete foo, bar, baz, boom;
+    delete[] ptr;
+}
+```
+If you dont memory is not deallocated and you can not access that address anymore.
+But of course if the program finished, all the memory is released.
 
 
 
