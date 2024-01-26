@@ -402,6 +402,16 @@ int main()
 If you dont memory is not deallocated and you can not access that address anymore.
 But of course if the program finished, all the memory is released.
 
+Key Differences Between Stack and Heap Allocations 
+ 
+
+In a stack, the allocation and de-allocation are automatically done by the compiler whereas, in heap, it needs to be done by the programmer manually.
+Handling the Heap frame is costlier than handling the stack frame.
+Memory shortage problem is more likely to happen in stack whereas the main issue in heap memory is fragmentation.
+Stack frame access is easier than the heap frame as the stack has a small region of memory and is cache-friendly but in the case of heap frames which are dispersed throughout the memory so it causes more cache misses.
+A stack is not flexible, the memory size allotted cannot be changed whereas a heap is flexible, and the allotted memory can be altered.
+Accessing the time of heap takes is more than a stack.
+
 
 
 ```
