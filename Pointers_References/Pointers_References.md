@@ -314,7 +314,9 @@ int main()
     int block_of_data[];
 }
 ```
+
 Only way to this in dynamically is:
+
 ```
 #include <iostream>
 #include <array>
