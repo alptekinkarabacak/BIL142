@@ -205,21 +205,26 @@ int main()
     double value;
     alp = &value;
 }
+```
 These assignments are compile errors.
 
 Dereferencing:
 How Can I assign a value to a pointer that points?
 Is below legal?
+
 ```
 int* foo{12}; 
 ```
 Or this?
+
 ```
 int* foo;
 foo = 12;
 ```
+
 We need dereference operator to access the value of pointer points.
 We can dereference a pointer to get the data in the memory address that pointer stores.
+
 ```
 #include <iostream>
 using namespace std;
@@ -234,6 +239,7 @@ int main()
 Dont confuse about the '*' operator.
 When you use '*' in declaration, it creates a pointer variable.
 Otherwise, it is a deference operator.
+
 ```
 #include <iostream>
 using namespace std;
@@ -250,6 +256,7 @@ int main()
     cout << *foo_ptr << "\n";
 }
 ```
+
 Ok how Can I create a pointer and assign a value to that pointer without another variable?
 First we need to talk about stack and heap memory.
 Heap memory and stack memory is two different memory concepts of RAM of a processor.
@@ -257,6 +264,7 @@ Heap memory and stack memory is two different memory concepts of RAM of a proces
 Stack memory:
 
 The size of memory to be allocated is known to the compiler and whenever a function is called, its variables get memory allocated on the stack. And whenever the function call is over, the memory for the variables is de-allocated. This all happens using some predefined routines in the compiler. A programmer does not have to worry about memory allocation and de-allocation of stack variables. This kind of memory allocation is also known as Temporary memory allocation because as soon as the method finishes its execution all the data belonging to that method flushes out from the stack automatically. This means any value stored in the stack memory scheme is accessible as long as the method hasn’t completed its execution and is currently running.
+
 ```
 // All these variables get memory
   // allocated on stack
@@ -265,6 +273,7 @@ The size of memory to be allocated is known to the compiler and whenever a funct
   int n = 20;
   int c[n];
 ```
+
 Heap Memory:
 
 The memory is allocated during the execution of instructions written by programmers. Note that the name heap has nothing to do with the heap data structure. It is called a heap because it is a pile of memory space available to programmers to allocate and de-allocate. Every time when we made an object it always creates in Heap-space and the referencing information to these objects is always stored in Stack-memory. Heap memory allocation isn’t as safe as Stack memory allocation because the data stored in this space is accessible or visible to all threads. If a programmer does not handle this memory well, a memory leak can happen in the program.
@@ -284,7 +293,9 @@ int main()
     int* ptr  = new int[10];
 }
 ```
+
 or
+
 ```
 #include <iostream>
 #include <array>
@@ -302,7 +313,9 @@ int main()
     cout << block_of_data[3] << "\n";
 }
 ```
+
 But you can not these types of things with stack allocations
+
 ```
 #include <iostream>
 #include <array>
@@ -333,7 +346,6 @@ int main()
 ```
 
 ```
-
 #include <iostream>
 #include <array>
 using namespace std;
@@ -350,7 +362,9 @@ int main()
     cout << "The value of the 20th index is: " << block_of_data[20] << "\n";
 }
 ```
+
 Thats why dont use pointer arrays, you must use std data containers like vectors, arrays for storing block of data.
+
 ```
 #include <iostream>
 #include <array>
@@ -367,6 +381,7 @@ int main()
 ```
 
 Anyway dont forget the deallocate the pointer with delete.
+
 ```
 #include <iostream>
 #include <array>
