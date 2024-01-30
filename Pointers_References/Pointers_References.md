@@ -431,13 +431,5 @@ int main()
 }
 ```
 
-
-
-
-
-
-
-
-
-
-
+Standard Library Array
+There is a library for creating arrays. 
