@@ -431,5 +431,23 @@ int main()
 }
 ```
 
+Standard Library Containers
+Always use standard library containers instead of raw pointers, to store sequential data. There are a lot of data structures to store multiple data, vector, array, map, set, pair... etc.
+
 Standard Library Array
-There is a library for creating arrays. 
+You have to include <array> to use std::array
+syntax is:
+```
+std::array<type, size> nameOfArray
+```
+```
+#include <iostream>
+#include <array>
+
+int main()
+{
+    std::array<int, 5> ar1;
+    std::array<int, 5> ar2{0, 0, 0, 0, 0};
+    std::array<int, 5> ar3  = {0, 0, 0, 0, 0};
+}
+```
