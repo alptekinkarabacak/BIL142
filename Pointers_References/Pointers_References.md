@@ -451,3 +451,4 @@ int main()
     std::array<int, 5> ar3  = {0, 0, 0, 0, 0};
 }
 ```
+You can use lot of std::array functions to do some basic jobs, like size(), 
