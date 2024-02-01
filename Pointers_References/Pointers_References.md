@@ -511,6 +511,84 @@ int main()
     // Describe the expanding the memory
 }
 ```
+To erase element or elements from a vector there are 3 methods:
+1) pop_back()
+```
+#include <iostream> 
+#include <vector> 
+using namespace std; 
+ 
+int main(){ 
+    vector<int> v; 
+    v.push_back(3);           //Insert element 3 
+    v.push_back(5);           //Insert element 5 
+    v.push_back(7);           //Insert element 7 
+     
+    //vector(v) has 3 elements with size 3 
+ 
+    v.pop_back();            //This method will remove the last element 
+ 
+    for(int i=0;i<v.size();i++){ 
+        cout << v[i] << " "; 
+    } 
+     
+    return 0; 
+}
+```
+2) erase()
+```
+#include <iostream> 
+#include <vector> 
+using namespace std; 
+ 
+int main(){ 
+    vector<int> v; 
+     
+    //Insert values 0 to 5 
+    for(int i=0;i<=5;i++) 
+        v.push_back(i); 
+     
+    //vector has [0,1,2,3,4,5] 
+ 
+    //erase the 5th element 
+    v.erase(v.begin()+4); 
+ 
+    //erase first 3 elements 
+    v.erase(v.begin(),v.begin()+3); 
+ 
+    for(int i=0;i<v.size();i++){ 
+        cout << v[i] << " "; 
+    } 
+     
+    return 0; 
+}
+```
+3) clear
+```
+#include <iostream> 
+#include <vector> 
+using namespace std; 
+ 
+int main(){ 
+    vector<int> v; 
+    v.push_back(5);    //Insert element 5 
+    v.push_back(10);   //Insert element 10 
+     
+    //Empty the vector 
+    v.clear(); 
+    v.push_back(11);    //Insert element 11 
+    v.push_back(12);    //Insert element 12 
+ 
+    //In the end, the vector contains elements 11 and 12  
+     
+    for(int i=0;i<v.size();i++){ 
+        cout << v[i] << " "; 
+    } 
+         
+    return 0; 
+}
+```
+
 for each loop in c++ 
 
 Syntax:
