@@ -413,6 +413,19 @@ A stack is not flexible, the memory size allotted cannot be changed whereas a he
 Accessing the time of heap takes is more than a stack.
 
 
+Question: int **pptr how can I assign this a value?
+```
+#include <iostream>
+#include <array>
+
+
+int main()
+{
+    int foo = 1453;
+    int *ptr = &foo;
+    int **pptr = ptr;
+}
+```
 
 ```
 #include <iostream>
@@ -451,4 +464,28 @@ int main()
     std::array<int, 5> ar3  = {0, 0, 0, 0, 0};
 }
 ```
-You can use lot of std::array functions to do some basic jobs, like size(), 
+You can use lot of std::array functions to do some basic jobs, like size(), empty(), swap() for swapping two arrays.
+Another main advantage of using std::array is, you can access the size of an array. Or you can overload with different sized arrays
+```
+#include <iostream>
+#include <array>
+
+void func(std::array<int, 6> foo) {
+
+}
+
+void func(std::array<int, 5> foo) {
+
+}
+
+int main()
+{
+    std::array<int, 5> ar1;
+    std::array<int, 5> ar2{0, 0, 0, 0, 0};
+    std::array<int, 5> ar3  = {0, 0, 0, 0, 0};
+    func(ar1);
+}
+```
+When you are using array on stack, you have to do some mathematical calculation, 
+But when you are using pointer on heap, you can not access the size.
+
