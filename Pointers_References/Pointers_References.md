@@ -489,3 +489,91 @@ int main()
 When you are using array on stack, you have to do some mathematical calculation, 
 But when you are using pointer on heap, you can not access the size.
 
+If the size is not known you can use std::vector.
+Standard Library Vector
+You have to include vector library to your code.
+```
+
+#include <iostream>
+#include <vector>
+
+
+int main()
+{
+    std::vector<int> g1;
+    std::vector<int> g2(10);
+    std::vector<int> g3{1, 2, 3, 4};
+    // To add new element to a vector.
+    g1.emplace_back(5);
+    g1.emplace_back(6);
+    g1.emplace_back(7);
+    std::cout<<g1.size();
+    // Describe the expanding the memory
+}
+```
+for each loop in c++ 
+
+Syntax:
+```
+for (data_type  variable_name : container_name) {
+
+     operations using variable_name
+
+}
+```
+
+```
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+    int arr[] = { 10, 20, 30, 40 };
+ 
+    // Printing elements of an array using
+    // foreach loop 
+    // Here, int is the data type, x is the variable name 
+    // and arr is the array for which we want to iterate foreach
+      cout<<"Traversing the array with foreach using array's data type: ";
+    for (int x : arr) {
+        cout<<x<<" ";
+    }
+       
+      // data type of x is set as int
+    cout<<"\nTraversing the array with foreach using auto keyword     : ";
+
+      for (auto x : arr) {
+          cout<<x<<" ";
+      }
+}
+```
+
+```
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+
+    vector<string> value{ "This",    "is",    "foreach",
+                          "example", "using", "vector." };
+
+    cout << "Traversing the vector with foreach using "
+            "vector's data type: ";
+
+    for (string v : value) {
+        cout << v << " ";
+    }
+
+    cout << "\nTraversing the vector with foreach using "
+            "auto keyword      : ";
+
+    for (auto v : value) {
+        cout << v << " ";
+    }
+
+    return 0;
+}
+```
+What about if I try the change the value with for each?
