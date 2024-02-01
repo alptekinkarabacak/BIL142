@@ -345,42 +345,8 @@ int main()
 }
 ```
 
-```
-#include <iostream>
-#include <array>
-using namespace std;
 
-int main()
-{
-    size_t size_of_ptr;
-    int* block_of_data{nullptr};
-    cout << "Enter a size for block of data\n ";
-    cin >> size_of_ptr;
-    block_of_data  = new int(size_of_ptr);
-    cout << "Memory is allocated with size: " << size_of_ptr << "\n";
-    block_of_data[20] = 30;
-    cout << "The value of the 20th index is: " << block_of_data[20] << "\n";
-}
-```
-
-Thats why dont use pointer arrays, you must use std data containers like vectors, arrays for storing block of data.
-
-```
-#include <iostream>
-#include <array>
-using namespace std;
-
-int main()
-{
-    const size_t size_of_data{5};
-    std::array<int, size_of_data> block_of_data;
-    cout << "Enter a size for block of data\n ";
-    block_of_data.at(20) = 30;
-    cout << "The value of the 20th index is: " << block_of_data.at(20) << "\n";
-}
-```
-
-Anyway dont forget the deallocate the pointer with delete.
+Dont forget the deallocate the pointer with delete.
 
 ```
 #include <iostream>
@@ -444,7 +410,44 @@ int main()
 }
 ```
 
+
+```
+#include <iostream>
+#include <array>
+using namespace std;
+
+int main()
+{
+    size_t size_of_ptr;
+    int* block_of_data{nullptr};
+    cout << "Enter a size for block of data\n ";
+    cin >> size_of_ptr;
+    block_of_data  = new int(size_of_ptr);
+    cout << "Memory is allocated with size: " << size_of_ptr << "\n";
+    block_of_data[20] = 30;
+    cout << "The value of the 20th index is: " << block_of_data[20] << "\n";
+}
+```
+
+Thats why dont use pointer arrays, you must use std data containers like vectors, arrays for storing block of data.
+
+```
+#include <iostream>
+#include <array>
+using namespace std;
+
+int main()
+{
+    const size_t size_of_data{5};
+    std::array<int, size_of_data> block_of_data;
+    cout << "Enter a size for block of data\n ";
+    block_of_data.at(20) = 30;
+    cout << "The value of the 20th index is: " << block_of_data.at(20) << "\n";
+}
+```
+
 Standard Library Containers
+
 Always use standard library containers instead of raw pointers, to store sequential data. There are a lot of data structures to store multiple data, vector, array, map, set, pair... etc.
 
 Standard Library Array
