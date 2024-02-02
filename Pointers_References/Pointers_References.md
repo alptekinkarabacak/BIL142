@@ -719,5 +719,65 @@ int main()
 See the address of count value is totally different. 
 When you called a function with value, the changes are only visible in the function.
 
+Passing by Pointer
+
+Here, the memory location (address) of the variables is passed to the parameters in the function, and then the operations are performed. It is also called the call by pointer method.
+```
+#include <iostream>
+#include <array>
+void incrementCount(int* count)//pass by value
+{
+    *count=*count+1;//increments the value of count inside the function
+}
+
+int main()
+{
+    using namespace  std;
+    int count=0;// initialze the variable count
+    cout<<"Pass by value\n";
+    cout<<"Count:";
+    cout<<count;//prints the value of count after the function call
+    return 0;
+}
+```
+
+Passing By Reference
+It allows a function to modify a variable without having to create a copy of it. We have to declare reference variables. The memory location of the passed variable and parameter is the same and therefore, any change to the parameter reflects in the variable as well.
+
+It is also called the Call by Reference method.
+```
+#include <iostream>
+#include <array>
+void incrementCount(int& count)//pass by value
+{
+    count=count+1;//increments the value of count inside the function
+}
+
+int main()
+{
+    using namespace  std;
+    int count=0;// initialze the variable count
+    cout<<"Pass by value\n";
+    cout<<"Count:";
+    cout<<count;//prints the value of count after the function call
+    return 0;
+}
+```
+
+Which is preferred, Passing by Pointer Vs Passing by Reference in C++? 
+References are usually preferred over pointers whenever we don’t need “reseating”.
+If we want to use NULL in our function arguments, prefer pointers.
+Overall, Use references when you can, and pointers when you have to.
+
+Dont forget to attention to const correctness
+
+Swap?
+
+
+
+
+
+
+
 
 
