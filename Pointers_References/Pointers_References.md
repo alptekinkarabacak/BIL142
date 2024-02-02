@@ -658,3 +658,66 @@ int main()
 }
 ```
 What about if I try the change the value with for each?
+
+Function Calling Techniques
+In C++, we can pass parameters to a function, by values, by pointers, or by reference. 
+
+Let’s first understand what Passing by value mean:
+
+Pass by value means that a copy of the actual parameter’s value is made in memory, i.e. the caller and callee have two independent variables with the same value. If the callee modifies the parameter value, the effect is not visible to the caller.
+
+Overview:
+
+Passes an argument by value.
+Callee does not have any access to the underlying element in the calling code.
+A copy of the data is sent to the callee.
+Changes made to the passed variable do not affect the actual value.
+
+```
+void incrementCount(int count)//pass by value
+{
+  count=count+1;//increments the value of count inside the function
+}
+
+int main()
+{
+  int count=0;// initialze the variable count
+  int result=0;//  initialze the variable result
+  incrementCount(count);//call increment function
+  cout<<"Pass by value\n";
+  cout<<"Count:";
+  cout<<count;//prints the value of count after the function call
+  return 0;
+}
+```
+So, when we try to print the address of count:
+
+```
+#include <iostream>
+#include <array>
+
+void incrementCount(int count)//pass by value
+{
+    using namespace std;
+    count=count+1;//increments the value of count inside the function
+    cout<< "Count value in the function is: " << count << "\n";
+    cout<< "The address of count value in the function is: " << &count << "\n";
+}
+
+int main()
+{
+    using namespace std;
+    int count=0;// initialze the variable count
+    int result=0;//  initialze the variable result
+    cout<< "The address of count value in the main is: " << &count << "\n";
+    incrementCount(count);//call increment function
+    cout<<"Pass by value\n";
+    cout<< "Count value in the main is: " << count << "\n";
+    return 0;
+}
+```
+See the address of count value is totally different. 
+When you called a function with value, the changes are only visible in the function.
+
+
+
