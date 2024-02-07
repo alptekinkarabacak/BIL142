@@ -655,3 +655,5 @@ int main() {
 ```
 
 
+int **pptr = new int();
+*(*pptr) = 5

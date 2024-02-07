@@ -5,21 +5,8 @@
 #include "Test.h"
 
 
-int calculateDiv(const double first, const double second) {
+void Foo::abc() {
+    using namespace std;
 
-}
-
-int calculateSum(const int first, const int second) {
-    return first + second;
-}
-
-double calculateMultiple(const double first, const int second) {
-    int result{0};
-    result = first * second;
-    return result;
-}
-
-double withoutNames(int first, int second) {
-    return first % second;
 }
 

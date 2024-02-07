@@ -28,29 +28,12 @@ int main()
 }
 */
 
-inline bool isItDivable(int first, int second) {
-
-    return (second == 0) ? false : true;
-}
-
-inline bool anotherDivableFunc(int first, int second) {
-    return second != 0;
-}
-
-/*
- #include <iostream>
 using namespace std;
-#include "Test.h"
-int main()
-{
-      if (isItDivable(10, 0)){
-          cout << "Yes it is! "<< "\n";
-      } else {
-          cout << "Nope "<< "\n";
-      }
-}
-*/
-
-
-
+class Foo {
+public:
+    void abc() {
+        int a;
+        a++;
+    }
+};
 #endif //BIL142_TEST_H
