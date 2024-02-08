@@ -1,3 +1,15 @@
+1 The Object-Oriented Philosophy
+As we have noted, OO programming languages had their roots in simulation.
+
+The first proponents of OO looked back to simulation, one of the early success stories in programming and design. Many early simulation programmers were able to construct programs that were organized in a way that made them easy to modify and maintain.
+
+In part this was because Simula and other simulation programming languages offered features that supported ADTs as modular building blocks – but so did many other programming languages. Beyond the question of what the language supported, there was the issue of how those simulation programmers organized their programs in the first place. They were, in a very literal sense, keeping it real.
+
+This, it was thought, was because the focus on modeling the real world, in a language that created a module for each kind of real-world object, led to programs that felt “natural” and easily understood by anyone who understood the part of the real world that was being simulated.
+
+If you buy the first part of this philosophy, then the second part becomes really interesting. Ever listen to another programmer explain a design and wonder how the heck that was going to solve the problem at hand? Ever notice how programmers love to make up new terms for things in their code, often in defiance of the normal English-language meaning of the word? Or, even worse, ever read code where the variables had names like info or data or value or the functions had names like processData? Does anyone think names like those  have any informational content?
+
+
 C++ supports Object Oriented Programming, and classes and objects are the heart of this programming paradigm.
 
 ﻿C++ has various built in types (like bool, int, floats, and so on). Each of these types has various features (for example, the size of their memory occupancy). Operators have different meanings for each different type.
