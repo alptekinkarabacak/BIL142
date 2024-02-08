@@ -75,6 +75,103 @@ int main() {
 } 
 ```
 
+Constructors
+ 
+Constructors are special class members which are called by the compiler every time an object of that class is instantiated. Constructors have the same name as the class and may be defined inside or outside the class definition. There are 3 types of constructors:
+
+Default Constructors
+Parameterized Constructors
+Copy Constructors
+
+```
+using namespace std; 
+class Geeks 
+{ 
+    public: 
+    int id; 
+      
+    //Default Constructor 
+    Geeks() 
+    { 
+        cout << "Default Constructor called" << endl;  
+        id=-1; 
+    } 
+      
+    //Parameterized Constructor 
+    Geeks(int x) 
+    { 
+        cout <<"Parameterized Constructor called "<< endl; 
+        id=x; 
+    } 
+}; 
+int main() { 
+      
+    // obj1 will call Default Constructor 
+    Geeks obj1; 
+    cout <<"Geek id is: "<<obj1.id << endl; 
+      
+    // obj2 will call Parameterized Constructor 
+    Geeks obj2(21); 
+    cout <<"Geek id is: " <<obj2.id << endl; 
+    return 0; 
+}
+```
+
+Copy Constructor
+
+A copy constructor is a member function that initializes an object using another object of the same class. In simple terms, a constructor which creates an object by initializing it with an object of the same class, which has been created previously is known as a copy constructor.  
+
+Copy constructor is used to initialize the members of a newly created object by copying the members of an already existing object.
+
+Copy constructor takes a reference to an object of the same class as an argument.
+```
+class Student {
+    int studentNumber;
+    std::string studentName
+ 
+public:
+    Student(int, std::string);
+    Student(Student& student) // copy constructor
+    {
+        studentNumber = student.studentNumber;
+        studentName = student.studentName
+    }
+    void display();
+};
+ 
+student::student(int number, std::string name)
+{
+    studentNumber = number;
+    studentName = name;
+    fee = f;
+}
+ 
+void student::display()
+{
+    cout << endl << rno << "\t" << name << "\t" << fee;
+}
+ 
+int main()
+{
+    Student electronicsStudent(1001, "Alptekin");
+    electronicsStudent.display();
+ 
+    student csStudent(electronicsStudent); // copy constructor called
+    csStudent.display();
+ 
+    return 0;
+}
+```
+
+Shallow Copy:
+Shallow repetition is quicker. However, it’s “lazy” it handles pointers and references. Rather than creating a contemporary copy of the particular knowledge the pointer points to, it simply copies over the pointer price. So, each of the first and therefore the copy can have pointers that reference constant underlying knowledge.
+
+Deep Copy: Deep repetition truly clones the underlying data. It is not shared between the first and therefore the copy.
+
+
+
+
+
 
 
 
