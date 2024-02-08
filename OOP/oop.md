@@ -37,8 +37,52 @@ Note: don't confuse this with the word 'Object'. An object is anything that occu
 But what if we want to have a type that represents objects in our daily life? How could you represent a house, a car, books, animals, and so on? This is why we need Classes.
 
 A class is a user defined type. This means that you can define your own types. You can make your own types like ints, floats, and chars. You can define operators for your types and set various properties for your own types.
+```
+class Geeks 
+{ 
+    public: 
+    string geekname; 
+    int id; 
+      
+    // printname is not defined inside class definition 
+    void printname(); 
+      
+    // printid is defined inside class definition 
+    inline void printid() 
+    { 
+        cout <<"Geek id is: "<<id; 
+    } 
+}; 
+  
+// Definition of printname using scope resolution operator :: 
+void Geeks::printname() 
+{ 
+    cout <<"Geekname is: "<<geekname;  
+} 
+int main() { 
+      
+    Geeks obj1; 
+    obj1.geekname = "xyz"; 
+    obj1.id=15; 
+      
+    // call printname() 
+    obj1.printname(); 
+    cout << endl; 
+      
+    // call printid() 
+    obj1.printid(); 
+    return 0; 
+} 
+```
 
-class 
+
+
+
+
+
+
+
+
 
 
 
