@@ -555,7 +555,7 @@ Introduction
 SOLID principles are a set of guidelines or best practices for object-oriented programming that help to create software that is more maintainable, flexible, and scalable. The term “SOLID” is an acronym for five different principles, each of which focuses on a different aspect of software development:
 
 S — Single Responsibility Principle (SRP)
-O — Open-Closed Principle (OCP)
+O — Open-Closed Principle (OCP) TODO: Add new example
 L — Liskov Substitution Principle (LSP)
 I — Interface Segregation Principle (ISP)
 D — Dependency Inversion Principle (DIP)
