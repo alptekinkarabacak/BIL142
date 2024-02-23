@@ -49,20 +49,78 @@ The idea is to take a class with a pointer, destructor, and overloaded operators
 memory header must included.
 
 Unique Pointers
-A unique pointer does not share ownership that means unique_ptr stores one pointer only and will free the resource at the end of the scope.
 
+The class unique_ptr is the simplest kind of smart pointers in C++. There are two things you need to know about them.
+
+As soon as they go out of scope, they are automatically deleted. We call such pointers “scoped pointers”. For this reason, they are especially useful when we want to reference dynamically allocated objects within a restricted scope.
+You can’t copy them (hence the qualifier unique).
+Those two points are connected: if you have a copy x of a scoped pointer y then when y goes out of scope, the memory block to which both x and y are pointing is deallocated. x would thus become a dangling pointer.
 
 For checking Diagrams
 https://www.geeksforgeeks.org/smart-pointers-cpp/ 
+
+What you can’t do with unique pointers
+As we just said, there are two operations that you cannot perform with unique pointers: copy and assignment. The program below shows two operations that would cause an error:
+
 
 ```
 #include <iostream>
 #include <memory>
 
+class MyClass {
+public:
+    MyClass(std::string firstValue) {
+        member = firstValue;
+    }
+    void saySomething() {
+        std::cout<<"Helloo \n";
+    }
+
+    std::string member;
+};
+
+void foo(std::unique_ptr<MyClass> bar) {
+    bar->saySomething();
+}
+
 int main() {
-  auto ptr = std::make_unique<int>(10); // Always construct with make_unique function
-} //
+    auto smartPtr = std::make_unique<MyClass>("X");
+    auto smartPtr2 = smartPtr;  // ERROR!
+    foo(smartPtr); // ERROR!
+
+    return 0;
+}
 ```
+If you need to move around a unique pointer and pass it to another function, you may want to use the standard library function move, as described in the example below:
+
+```
+void foo(std::unique_ptr<MyClass> bar) {
+    bar->saySomething();
+}
+
+int main() {
+    auto ptr = std::make_unique<MyClass>("X");
+    foo(std::move(ptr));
+    return 0;
+
+    return 0;
+}
+
+```
+
+
+```
+
+int main() {
+    auto smartPtr = std::make_unique<int>(1);
+    std::cout << smartPtr << std::endl;
+    std::cout << *smartPtr << std::endl;
+    
+    return 0;
+}
+
+```
+
 
 Shared Pointers
 By using shared_ptr more than one pointer can point to this one object at a time. A shared pointer does share ownership, and will only free the resource when there are no other owners counted and it has reached the end of the scope and it’ll maintain a Reference Counter using the use_count() method.
