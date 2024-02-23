@@ -147,6 +147,53 @@ int main() {
 } // The ptr reaches end of scope, reference count is 0 so resource is freed
 ```
 
+What about this one?
+
+```
+#include <iostream>
+#include <memory>
+
+
+class A {
+public:
+    std::shared_ptr<B> b_ptr;
+    A() { std::cout << "A Constructor\n"; }
+    ~A() { std::cout << "A Destructor\n"; }
+};
+
+class B {
+public:
+    std::shared_ptr<A> a_ptr;
+    B() { std::cout << "B Constructor\n"; }
+    ~B() { std::cout << "B Destructor\n"; }
+};
+
+int main() {
+    {
+        std::shared_ptr<A> a = std::make_shared<A>();
+        std::shared_ptr<B> b = std::make_shared<B>();
+
+        a->b_ptr = b;
+        b->a_ptr = a;
+
+        std::cout << "Inside scope:" << std::endl;
+        std::cout << "a use_count: " << a.use_count() << std::endl; // Expected to be 2
+        std::cout << "b use_count: " << b.use_count() << std::endl; // Expected to be 2
+    }
+    // a and b go out of scope here, but destructors won't be called due to circular dependency
+
+    // Note: Since a and b are out of scope, we cannot check their use_count here.
+    // The demonstration of the circular dependency is the lack of "Destructor" messages.
+
+    return 0;
+}
+
+
+```
+
+This code creates a block scope {} within main() where std::shared_ptr<A> and std::shared_ptr<B> are declared and initialized. By establishing a circular reference between a and b through their member variables, and then allowing a and b to go out of scope, we would expect both A and B to be destroyed automatically when their std::shared_ptr containers are destroyed. However, due to the circular reference, their use counts never drop to zero, and thus their destructors are not called. This behavior is evidenced by the absence of destructor messages ("A Destructor" and "B Destructor") in the output.
+
+
 Weak Pointer
 
 The last kind of smart pointer we cover is weak pointers. Weak pointers are similar to shared pointers except that they have no control block and reference counter. This means that you can share them, but the object they point to may be destroyed before they go out of scope or are assigned another pointer.
@@ -154,136 +201,101 @@ The last kind of smart pointer we cover is weak pointers. Weak pointers are simi
 
 ```
 #include <iostream>
-using namespace std;
-// Dynamic Memory management library
 #include <memory>
- 
-class Rectangle {
-    int length;
-    int breadth;
- 
+
+class B; // Forward declaration
+
+class A {
 public:
-    Rectangle(int l, int b)
-    {
-        length = l;
-        breadth = b;
-    }
- 
-    int area() { return length * breadth; }
+    std::shared_ptr<B> b_ptr; // A owns B
+    A() { std::cout << "A Constructor\n"; }
+    ~A() { std::cout << "A Destructor\n"; }
 };
- 
-int main()
-{
-    //---\/ Smart Pointer
-    shared_ptr<Rectangle> P1(new Rectangle(10, 5));
-   
-    // create weak ptr
-    weak_ptr<Rectangle> P2 (P1);
-   
-    // This'll print 50
-    cout << P1->area() << endl;
- 
-    // This'll print 1 as Reference Counter is 1
-    cout << P1.use_count() << endl;
+
+class B {
+public:
+    std::weak_ptr<A> a_ptr; // B weakly references A
+    B() { std::cout << "B Constructor\n"; }
+    ~B() { std::cout << "B Destructor\n"; }
+};
+
+int main() {
+    std::shared_ptr<A> a = std::make_shared<A>();
+    std::shared_ptr<B> b = std::make_shared<B>();
+
+    a->b_ptr = b;
+    b->a_ptr = a; // Now a weak_ptr assignment
+
+    // Use use_count() to demonstrate the lack of a circular dependency
+    std::cout << "a use_count (should be 1): " << a.use_count() << std::endl;
+    std::cout << "b use_count (should be 1): " << b.use_count() << std::endl;
+
+    // No need to manually reset to break the cycle
+    // The destructors will be called automatically when the scope ends
+
     return 0;
 }
+
 ```
 
 There are two methods you need to know to manipulate weak pointers:
 
 expired: it takes no arguments and returns true is the memory block it points to has been deallocated, false, otherwise;
 
-lock: it takes no arguments and returns expired() ? shared_pointer<T>() : shared_pointer(*this). It is a "safe dereferencing" method as it enables to get the value of the memory block after checking if it has not been deallocated.
+lock
+Purpose of lock()
+std::weak_ptr is designed to break circular references that can occur with std::shared_ptr, but it does not own the object it points to. Instead, it merely observes the object. This means that the object a std::weak_ptr points to can be destroyed if all std::shared_ptr instances that share ownership of the object are destroyed or reset. lock() provides a safe way to access the object, but only if it still exists.
+
+How lock() Works
+When lock() is called on a std::weak_ptr, it checks whether the object it points to still exists. If the object exists (i.e., if there is at least one std::shared_ptr that owns the object), lock() creates and returns a new std::shared_ptr that shares ownership of the object. This ensures that the object won't be destroyed while the returned std::shared_ptr exists. If the object has already been destroyed (i.e., there are no std::shared_ptr instances owning the object), lock() returns an empty std::shared_ptr.
 
 ```
 #include <iostream>
-using namespace std;
-// Dynamic Memory management library
 #include <memory>
- 
-class Rectangle {
-    int length;
-    int breadth;
- 
+
+class Example {
 public:
-    Rectangle(int l, int b)
-    {
-        length = l;
-        breadth = b;
-    }
- 
-    int area() { return length * breadth; }
+    void show() { std::cout << "Example::show()" << std::endl; }
 };
- 
-int main()
-{
-    std::weak_ptr<MyClass> weakPtr;
 
-    {
-        // New scope
-        auto sharedPtr = std::make_shared<MyClass>("X");
-        weakPtr = sharedPtr;
+void accessResource(const std::weak_ptr<Example>& wp) {
+    // Attempt to access the object through wp using lock()
+    std::shared_ptr<Example> tempSp = wp.lock();
+    if (tempSp) {
+        // The object exists, and tempSp now shares ownership
+        tempSp->show();
+    } else {
+        // The object has been destroyed, and tempSp is empty
+        std::cout << "Object no longer exists." << std::endl;
     }
-
-    std::shared_ptr<MyClass> weakPtrValue = weakPtr.lock();
-    if (weakPtrValue) {
-    } 
-    else {
-        std::cout << "weakPtr points to a deallocated block";
-    }
-
-    return 0;
-
 }
-```
-
-Weak pointers have two main advantages:
-
-They prevent errors caused by dangling pointers: by providing a way of checking whether the block they point to has been deallocated, they prevent users from dereferencing and manipulating dangling pointers.
-
-They address circular dependency issues. For example, if you run the following code:
-
-```
-
-class A {
-public:
-    ~A() {std::cout << "An instance of A is dying…" << std::endl;}
-
-    void setB(std::shared_ptr<B> _b) {
-        b = _b;
-    }
-
-private:
-    std::shared_ptr<B> b;
-};
-
-class B {
-public:
-    ~B() {std::cout << "An instance of B is dying…" << std::endl;}
-
-    void setA(std::shared_ptr<A> _a) {
-        a = _a;
-    }
-
-private:
-    std::shared_ptr<A> a;
-};
 
 int main() {
-    auto a = std::make_shared<A>();
-    auto b = std::make_shared<B>();
+    std::weak_ptr<Example> wp;
+    {
+        std::shared_ptr<Example> sp = std::make_shared<Example>();
+        wp = sp; // wp observes sp
 
-    a->setB(b);
-    b->setA(a);
+        // Access the resource while sp is still in scope
+        std::cout << "Accessing resource while it exists:" << std::endl;
+        accessResource(wp);
+    } // sp goes out of scope here, and the Example object is destroyed
+
+    // Try to access the object through wp after sp has gone out of scope
+    std::cout << "Attempting to access resource after it has been destroyed:" << std::endl;
+    accessResource(wp);
 
     return 0;
 }
 ```
+Let's break the code
 
-then neither a nor b will be destructed: b cannot be destructed as long as a is alive, because a contains a reference to b and similarly, a cannot be destructed because b contains a reference to it. This causes a memory leak.
+The accessResource function attempts to access and use the Example object through a std::weak_ptr by converting it to a std::shared_ptr using lock().
 
-To avoid this problem, we can simply change the type of the attributes a and b of B and A from shared_ptr to weak_ptr.
+Initially, sp is in scope, and the Example object exists, so accessResource can successfully use tempSp to call show().
 
+Once sp goes out of scope, the Example object is automatically destroyed because there are no std::shared_ptr instances managing it anymore.
 
+After sp goes out of scope, calling accessResource again demonstrates that attempting to access the Example object through wp results in tempSp being an empty pointer. This is because lock() failed to lock onto the resource (since it no longer exists), highlighting how lock() can be used to safely attempt access to resources that might have been deleted.
 
 
