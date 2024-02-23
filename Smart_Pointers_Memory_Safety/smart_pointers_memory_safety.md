@@ -240,6 +240,7 @@ int main()
 Weak pointers have two main advantages:
 
 They prevent errors caused by dangling pointers: by providing a way of checking whether the block they point to has been deallocated, they prevent users from dereferencing and manipulating dangling pointers.
+
 They address circular dependency issues. For example, if you run the following code:
 
 ```
