@@ -123,7 +123,13 @@ int main() {
 
 
 Shared Pointers
-By using shared_ptr more than one pointer can point to this one object at a time. A shared pointer does share ownership, and will only free the resource when there are no other owners counted and it has reached the end of the scope and it’ll maintain a Reference Counter using the use_count() method.
+
+The second kind of smart pointer that exists in C++ is shared pointer. Shared pointers can be copied and the memory block they point to is not deallocated until all other shared pointers that point to it have been destructed. When a shared pointer is instantiated, an extra memory block is allocated. It is called the control block and keeps track of the number of copies that have been made. The object shared pointers point to is deleted as soon as the reference counter reaches 0, that is when the last remaining copy is destroyed or assigned another pointer.
+
+This additional functionality is at the expense of a heavier overhead, so you should not use shared pointers when a unique pointer suffices.
+
+
+
 ```
 #include <iostream>
 #include <memory>
@@ -142,7 +148,8 @@ int main() {
 ```
 
 Weak Pointer
-Weak_ptr is a smart pointer that holds a non-owning reference to an object. It’s much more similar to shared_ptr except it’ll not maintain a Reference Counter. In this case, a pointer will not have a stronghold on the object. The reason is if suppose pointers are holding the object and requesting for other objects then they may form a Deadlock. 
+
+The last kind of smart pointer we cover is weak pointers. Weak pointers are similar to shared pointers except that they have no control block and reference counter. This means that you can share them, but the object they point to may be destroyed before they go out of scope or are assigned another pointer.
 
 
 ```
@@ -181,4 +188,101 @@ int main()
     return 0;
 }
 ```
+
+There are two methods you need to know to manipulate weak pointers:
+
+expired: it takes no arguments and returns true is the memory block it points to has been deallocated, false, otherwise;
+
+lock: it takes no arguments and returns expired() ? shared_pointer<T>() : shared_pointer(*this). It is a "safe dereferencing" method as it enables to get the value of the memory block after checking if it has not been deallocated.
+
+```
+#include <iostream>
+using namespace std;
+// Dynamic Memory management library
+#include <memory>
+ 
+class Rectangle {
+    int length;
+    int breadth;
+ 
+public:
+    Rectangle(int l, int b)
+    {
+        length = l;
+        breadth = b;
+    }
+ 
+    int area() { return length * breadth; }
+};
+ 
+int main()
+{
+    std::weak_ptr<MyClass> weakPtr;
+
+    {
+        // New scope
+        auto sharedPtr = std::make_shared<MyClass>("X");
+        weakPtr = sharedPtr;
+    }
+
+    std::shared_ptr<MyClass> weakPtrValue = weakPtr.lock();
+    if (weakPtrValue) {
+    } 
+    else {
+        std::cout << "weakPtr points to a deallocated block";
+    }
+
+    return 0;
+
+}
+```
+
+Weak pointers have two main advantages:
+
+They prevent errors caused by dangling pointers: by providing a way of checking whether the block they point to has been deallocated, they prevent users from dereferencing and manipulating dangling pointers.
+They address circular dependency issues. For example, if you run the following code:
+
+```
+
+class A {
+public:
+    ~A() {std::cout << "An instance of A is dying…" << std::endl;}
+
+    void setB(std::shared_ptr<B> _b) {
+        b = _b;
+    }
+
+private:
+    std::shared_ptr<B> b;
+};
+
+class B {
+public:
+    ~B() {std::cout << "An instance of B is dying…" << std::endl;}
+
+    void setA(std::shared_ptr<A> _a) {
+        a = _a;
+    }
+
+private:
+    std::shared_ptr<A> a;
+};
+
+int main() {
+    auto a = std::make_shared<A>();
+    auto b = std::make_shared<B>();
+
+    a->setB(b);
+    b->setA(a);
+
+    return 0;
+}
+```
+
+then neither a nor b will be destructed: b cannot be destructed as long as a is alive, because a contains a reference to b and similarly, a cannot be destructed because b contains a reference to it. This causes a memory leak.
+
+To avoid this problem, we can simply change the type of the attributes a and b of B and A from shared_ptr to weak_ptr.
+
+
+
 
