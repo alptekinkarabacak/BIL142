@@ -191,7 +191,8 @@ int main() {
 
 ```
 
-This code creates a block scope {} within main() where std::shared_ptr<A> and std::shared_ptr<B> are declared and initialized. By establishing a circular reference between a and b through their member variables, and then allowing a and b to go out of scope, we would expect both A and B to be destroyed automatically when their std::shared_ptr containers are destroyed. However, due to the circular reference, their use counts never drop to zero, and thus their destructors are not called. This behavior is evidenced by the absence of destructor messages ("A Destructor" and "B Destructor") in the output.
+This code creates a block scope {} within main() where std::shared_ptr<A> and std::shared_ptr<B>   
+are declared and initialized. By establishing a circular reference between a and b through their member variables, and then allowing a and b to go out of scope, we would expect both A and B to be destroyed automatically when their std::shared_ptr containers are destroyed. However, due to the circular reference, their use counts never drop to zero, and thus their destructors are not called. This behavior is evidenced by the absence of destructor messages ("A Destructor" and "B Destructor") in the output.
 
 
 Weak Pointer
