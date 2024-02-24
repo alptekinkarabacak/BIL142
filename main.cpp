@@ -1,32 +1,61 @@
 #include <iostream>
-#include <array>
+#include <memory>
 
+class MyClass {
+public:
+    MyClass() = default;
+    MyClass(double firstValue) {
 
-void incrementCount(int* ptr)//pass by value -> int& count_in_func = count
-{
+    }
+    void saySomething() {
+        std::cout<<"Helloo \n";
+    }
 
+    std::string member;
+};
+
+void foo(std::unique_ptr<MyClass> bar) {
+    bar->saySomething();
 }
 
-void incrementCount(char* ptr)//pass by value -> int& count_in_func = count
-{
+int main() {
+    std::unique_ptr<int> smartPtr;
+    smartPtr = std::make_unique<int>(20);
 
-    using namespace std;
-    count_in_func=count_in_func+1;//increments the value of count inside the function
-}
+    std::unique_ptr<int> uniq_ptr = std::make_unique<int>(10);
+    std::cout<< smartPtr<<"\n";
+    uniq_ptr = std::move(smartPtr);
+    std::cout<< *uniq_ptr<<"\n";
+    std::cout<< smartPtr<<"\n";
+    std::cout<< "The value of smartPtr : " << *smartPtr<< "\n";
 
-int main()
-{
-    using namespace std;
-    int* count=0;// initialze the variable count
-    char* alp = &count;
-    cout<<"Pass by value\n";
-    incrementCount(count, );
-    incrementCount(count);
-    incrementCount(count);
-    incrementCount(count);
-    incrementCount(count);
+    {
+        std::shared_ptr<int> berke = std::make_shared<int>(10);
+        {
+            static int b;
+            std::shared_ptr<int> alp = std::make_shared<int>(10);
+            berke = alp;
+        }
 
-    cout<<"Count:";
-    cout<<count;//prints the value of count after the function call
+        b
+
+
+
+
+
+        std::shared_ptr<int> alp_2 = berke;
+    }
+
+    void func() {
+        static a{0};
+        ++a;
+    }
+
+
+
+
+//    auto smartPtr2 = smartPtr;  // ERROR!
+//    foo(smartPtr); // ERROR!
+
     return 0;
 }
