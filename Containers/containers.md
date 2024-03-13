@@ -211,10 +211,102 @@ int main()
 ```
 What about if I try the change the value with for each?
 
-Function Calling Techniques
-In C++, we can pass parameters to a function, by values, by pointers, or by reference. 
 
-Let’s first understand what Passing by value mean:
 
-Pass by value means that a copy of the actual parameter’s value is made in memory, i.e. the caller and callee have two independent variables with the same value. If the callee modifies the parameter value, the effect is not visible to the caller.
-﻿
+for loop with iterator
+
+```
+#include <iostream>
+#include <memory>
+
+
+int main() {
+    std::vector<int> myVec{1, 2, 3, 5};
+    std::vector<int>::iterator it = myVec.begin();
+
+    for(it;  it != myVec.end();  ++it) {
+        std::cout<<*it<<"\n";
+    }
+
+    return 0;
+}
+```
+
+
+
+
+Map
+Maps are associative containers that store elements in a mapped fashion. Each element has a key value and a mapped value. No two mapped values can have the same key values.
+
+std::map is the class template for map containers and it is defined inside the <map> header file.
+
+```
+#include <iostream>
+#include <map>
+#include <string>
+using namespace std;
+ 
+int main()
+{
+    // Create a map of strings to integers
+    map<string, int> mp;
+ 
+    // Insert some values into the map
+    mp["one"] = 1;
+    mp["two"] = 2;
+    mp["three"] = 3;
+ 
+    // Get an iterator pointing to the first element in the
+    // map
+    map<string, int>::iterator it = mp.begin();
+ 
+    // Iterate through the map and print the elements
+    while (it != mp.end()) {
+        cout << "Key: " << it->first
+             << ", Value: " << it->second << endl;
+        ++it;
+    }
+ 
+    return 0;
+}
+```
+
+Creating a Map
+
+#include <iostream>
+#include <iterator>
+#include <map>
+using namespace std;
+ 
+int main()
+{
+ 
+    // empty map container
+    map<int, int> gquiz1;
+ 
+    // insert elements in random order
+    gquiz1.insert(pair<int, int>(1, 40));
+    gquiz1.insert(pair<int, int>(2, 30));
+    gquiz1.insert(pair<int, int>(3, 60));
+    gquiz1.insert(pair<int, int>(4, 20));
+    gquiz1.insert(pair<int, int>(5, 50));
+    gquiz1.insert(pair<int, int>(6, 50));
+ 
+    // another way of inserting a value in a map
+    gquiz1[7] = 10;
+
+     // assigning the elements from gquiz1 to gquiz2
+    map<int, int> gquiz2(gquiz1.begin(), gquiz1.end());
+
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
