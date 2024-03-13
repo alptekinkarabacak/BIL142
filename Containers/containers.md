@@ -238,7 +238,7 @@ int main() {
 Map
 Maps are associative containers that store elements in a mapped fashion. Each element has a key value and a mapped value. No two mapped values can have the same key values.
 
-std::map is the class template for map containers and it is defined inside the <map> header file.
+std::map is the class template for ordered map containers and it is defined inside the <map> header file.
 
 ```
 #include <iostream>
@@ -263,7 +263,7 @@ int main()
     // Iterate through the map and print the elements
     while (it != mp.end()) {
         cout << "Key: " << it->first
-             << ", Value: " << it->second << endl;
+             << ", Value: " << it->second << "\n";
         ++it;
     }
  
@@ -305,6 +305,53 @@ int main()
 }
 ```
 
+Erasing an Element
+
+```
+#include <iostream>
+#include <iterator>
+#include <map>
+using namespace std;
+ 
+int main()
+{
+ 
+    // empty map container
+    map<int, int> gquiz1;
+ 
+    // insert elements in random order
+    gquiz1.insert(pair<int, int>(1, 40));
+    gquiz1.insert(pair<int, int>(2, 30));
+    gquiz1.insert(pair<int, int>(3, 60));
+    gquiz1.insert(pair<int, int>(4, 20));
+    gquiz1.insert(pair<int, int>(5, 50));
+    gquiz1.insert(pair<int, int>(6, 50));
+ 
+    // another way of inserting a value in a map
+    gquiz1[7] = 10;
+ 
+    // printing map gquiz1
+ 
+    gquiz2.erase(gquiz2.begin(), gquiz2.find(3));
+    for (itr = gquiz2.begin(); itr != gquiz2.end(); ++itr) {
+        cout << '\t' << itr->first << '\t' << itr->second
+             << '\n';
+    }
+ 
+    int num;
+    num = gquiz2.erase(4);
+    cout << "\ngquiz2.erase(4) : ";
+    cout << num << " removed \n";
+    cout << "\tKEY\tELEMENT\n";
+    for (itr = gquiz2.begin(); itr != gquiz2.end(); ++itr) {
+        cout << '\t' << itr->first << '\t' << itr->second
+             << '\n';
+    }
+ 
+ 
+    return 0;
+}
+```
 
 
 
