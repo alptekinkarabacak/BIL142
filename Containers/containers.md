@@ -352,7 +352,26 @@ int main()
     return 0;
 }
 ```
+Dont forget to elements will be stored in ordered way
 
+```
+#include <iostream>
+#include <map>
+
+int main() {
+    std::map<int, int> myMap;
+
+    // insert elements in random order
+    myMap.insert(std::pair<int, int>(2, 40));
+    myMap.insert(std::pair<int, int>(1, 30));
+
+    for (auto element: myMap) {
+        std::cout<<element.first<<"\n";
+    }
+
+    return 0;
+}
+```
 
 
 
